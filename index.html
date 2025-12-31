@@ -16,6 +16,43 @@
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; color: var(--text); background: var(--white); }
 
+    /* Hero full image */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: url('azimut.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+    }
+    .hero h1 {
+      font-size: 64px;
+      margin: 0;
+      font-weight: bold;      /* غامق */
+      text-transform: uppercase;
+      text-shadow: none;      /* بدون ظل */
+    }
+
+    /* Slider dots */
+    .dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+    .dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+    }
+    .dot.active {
+      background: var(--gold);
+    }
+
     /* Top bar */
     .topbar {
       background: var(--navy);
@@ -54,43 +91,6 @@
     }
     nav .menu a:hover { color: var(--gold); }
 
-    /* Hero full image */
-    .hero {
-      position: relative;
-      height: 100vh;
-      background: url('azimut.png') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--white);
-    }
-    .hero h1 {
-      font-size: 64px;
-      margin: 0;
-      font-weight: bold;   /* غامق */
-      text-transform: uppercase;
-      /* بدون ظل */
-    }
-
-    /* Slider dots */
-    .dots {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-    }
-    .dot {
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.6);
-    }
-    .dot.active {
-      background: var(--gold);
-    }
-
     /* Footer */
     footer {
       background: var(--navy); color: var(--white);
@@ -116,6 +116,16 @@
 </head>
 <body>
 
+  <!-- Hero أول شي بالصفحة -->
+  <section class="hero">
+    <h1>Barbour For Yachting</h1>
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </section>
+
   <!-- Top bar -->
   <div class="topbar">
     <a class="brand" href="#">
@@ -134,19 +144,9 @@
       <a href="#">About Us</a>
       <a href="#">Our Services</a>
       <a href="#">Blog</a>
-      <a href="#">Communication</a>
+      <a href="#">Contact</a>
     </div>
   </nav>
-
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Barbour Yachting</h1>
-    <div class="dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-  </section>
 
   <!-- Footer -->
   <footer>
@@ -166,7 +166,7 @@
         <a href="#">About Us</a>
         <a href="#">Our Services</a>
         <a href="#">Blog</a>
-        <a href="#">Communication</a>
+        <a href="#">Contact</a>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>

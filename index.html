@@ -1,239 +1,274 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>Barbour Yachting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {font-family: Tahoma, sans-serif; margin:0; padding:0; direction:rtl;}
-    header {background:#003366; color:#fff; padding:20px;}
-    nav ul {list-style:none; display:flex; justify-content:center; gap:20px;}
-    nav a {color:#fff; text-decoration:none;}
-    section {padding:40px;}
-    .hero {background:#eee; text-align:center; padding:100px 20px;}
-    .service, .team-member, .testimonial, .faq {border:1px solid #ccc; padding:20px; margin-bottom:20px;}
-    footer {background:#003366; color:#fff; text-align:center; padding:20px;}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbour Yachting | The Finest Name in Superyachts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --fraser-navy: #000b1e;
+            --fraser-red: #c02b2d;
+            --fraser-gold: #b39359;
+            --fraser-text: #1a1a1a;
+            --f-gray: #f8f8f8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #fff; color: var(--fraser-text); overflow-x: hidden; }
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* --- PRELOADER --- */
+        #loader { position: fixed; inset: 0; background: var(--fraser-navy); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: 0.8s ease-in-out; }
+        .loader-content { color: white; letter-spacing: 10px; font-weight: 200; animation: pulse 2s infinite; }
+
+        /* --- NAV BAR & RED LINE --- */
+        header.top-bar {
+            background-color: var(--fraser-navy);
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 2000;
+            transition: 0.5s;
+        }
+        .red-line {
+            height: 4px; background-color: var(--fraser-red);
+            width: 100%; position: absolute; bottom: -4px; left: 0; z-index: 2001;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+            margin-top: 0;
+        }
+        #bg-video {
+            position: absolute; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.8;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 100%);
+            z-index: 5;
+        }
+        .video-text {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10; color: white; text-align: center; width: 100%;
+        }
+        .video-text h2 {
+            font-size: clamp(2rem, 6vw, 4.5rem);
+            letter-spacing: 0.5em; text-transform: uppercase;
+            font-weight: 300; animation: fadeInUp 1.5s ease;
+        }
+
+        /* --- SIDE MENU --- */
+        #side-menu {
+            position: fixed; top: 0; left: -100%; width: 400px; height: 100vh;
+            background: var(--fraser-navy); z-index: 3000; transition: 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+            padding: 80px 50px; color: white;
+        }
+        #side-menu.open { left: 0; }
+        .menu-link { 
+            display: block; font-size: 2rem; margin-bottom: 30px; 
+            transition: 0.3s; opacity: 0.7; 
+        }
+        .menu-link:hover { opacity: 1; padding-left: 15px; color: var(--fraser-gold); }
+
+        /* --- CARDS & GRIDS --- */
+        .yacht-card {
+            position: relative; height: 700px; overflow: hidden; background: #000;
+        }
+        .yacht-card img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: 1.5s ease; opacity: 0.85;
+        }
+        .yacht-card:hover img { transform: scale(1.1); opacity: 1; }
+        .card-caption {
+            position: absolute; bottom: 50px; left: 50px; color: white; z-index: 20;
+        }
+
+        /* --- SCROLL REVEAL --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1.2s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            header.top-bar { padding: 0 30px; height: 70px; }
+            #side-menu { width: 100%; }
+            .description-section { padding: 80px 5%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+    </style>
 </head>
 <body>
-  <!-- رأس الصفحة -->
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#services">الخدمات</a></li>
-        <li><a href="#gallery">المعرض</a></li>
-        <li><a href="#team">فريق العمل</a></li>
-        <li><a href="#testimonials">آراء العملاء</a></li>
-        <li><a href="#faq">الأسئلة الشائعة</a></li>
-        <li><a href="#contact">تواصل معنا</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- بانر رئيسي -->
-  <section id="home" class="hero">
-    <h1>مرحباً بكم في Barbour Yachting</h1>
-    <p>رحلات بحرية وتجارب لا تُنسى</p>
-    <button>اكتشف المزيد</button>
-  </section>
-
-  <!-- قسم الخدمات -->
-  <section id="services">
-    <h2>خدماتنا</h2>
-    <div class="service">
-      <h3>تأجير يخوت</h3>
-      <p>نوفر لك أفضل اليخوت الفاخرة للرحلات الخاصة.</p>
+    <div id="loader">
+        <div class="loader-content serif italic">BARBOUR</div>
     </div>
-    <div class="service">
-      <h3>رحلات بحرية</h3>
-      <p>استمتع بجولات بحرية مميزة مع طاقم محترف.</p>
+
+    <div id="side-menu">
+        <button onclick="toggleMenu()" class="text-gold uppercase tracking-widest text-xs mb-20">Close [X]</button>
+        <nav class="serif italic">
+            <a href="#sales" class="menu-link" onclick="toggleMenu()">Yachts for Sale</a>
+            <a href="#charter" class="menu-link" onclick="toggleMenu()">Yacht Charter</a>
+            <a href="#new" class="menu-link" onclick="toggleMenu()">New Build</a>
+            <a href="#management" class="menu-link" onclick="toggleMenu()">Management</a>
+            <a href="#contact" class="menu-link" onclick="toggleMenu()">Contact</a>
+        </nav>
     </div>
-    <div class="service">
-      <h3>فعاليات خاصة</h3>
-      <p>نساعدك بتنظيم حفلات ومناسبات على متن اليخت.</p>
-    </div>
-    <!-- كرر عناصر الخدمة لتكبير الكود -->
-  </section>
 
-  <!-- قسم المعرض -->
-  <section id="gallery">
-    <h2>المعرض</h2>
-    <div class="gallery">
-      <img src="images/yacht1.jpg" alt="يخت فاخر">
-      <img src="images/yacht2.jpg" alt="رحلة بحرية">
-      <img src="images/yacht3.jpg" alt="منظر البحر">
-      <!-- أضف المزيد من الصور -->
-    </div>
-  </section>
+    <header class="top-bar">
+        <div class="nav-icons flex items-center space-x-8">
+            <div onclick="toggleMenu()" class="cursor-pointer group">
+                <div class="w-8 h-[1px] bg-white mb-2 transition group-hover:bg-gold"></div>
+                <div class="w-5 h-[1px] bg-white transition group-hover:bg-gold"></div>
+            </div>
+            <svg class="w-5 h-5 fill-white cursor-pointer hover:fill-gold transition" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>
 
-  <!-- قسم الفريق -->
-  <section id="team">
-    <h2>فريق العمل</h2>
-    <div class="team-member">
-      <h3>محمد</h3>
-      <p>قائد الفريق</p>
-    </div>
-    <div class="team-member">
-      <h3>سارة</h3>
-      <p>منسقة الرحلات</p>
-    </div>
-    <!-- أضف المزيد من أعضاء الفريق -->
-  </section>
+        <div class="logo text-white text-xl md:text-3xl tracking-[0.4em] flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+             <span class="serif italic font-bold">BARBOUR</span>
+        </div>
 
-  <!-- قسم آراء العملاء -->
-  <section id="testimonials">
-    <h2>آراء العملاء</h2>
-    <div class="testimonial">
-      <p>"تجربة رائعة جداً!"</p>
-      <p>- أحمد</p>
-    </div>
-    <div class="testimonial">
-      <p>"أفضل رحلة بحرية في حياتي."</p>
-      <p>- ليلى</p>
-    </div>
-    <!-- أضف المزيد من الآراء -->
-  </section>
+        <div class="nav-icons hidden md:flex items-center space-x-8">
+            <svg class="w-5 h-5 fill-white cursor-pointer hover:fill-gold" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <svg class="w-5 h-5 fill-white cursor-pointer hover:fill-gold" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span class="text-white text-[10px] tracking-widest border-b border-gold font-bold cursor-pointer">EN</span>
+        </div>
+        <div class="red-line"></div>
+    </header>
 
-  <!-- قسم الأسئلة الشائعة -->
-  <section id="faq">
-    <h2>الأسئلة الشائعة</h2>
-    <div class="faq">
-      <h3>كيف أحجز رحلة؟</h3>
-      <p>يمكنك التواصل معنا عبر النموذج أدناه.</p>
-    </div>
-    <div class="faq">
-      <h3>هل يوجد طاقم متخصص؟</h3>
-      <p>نعم، جميع الرحلات مع طاقم محترف.</p>
-    </div>
-    <!-- أضف المزيد من الأسئلة -->
-  </section>
+    <section class="hero-section">
+        <video id="bg-video" autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-yacht-sailing-on-the-ocean-1531-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="video-text">
+            <h2 class="serif italic">First & Foremost</h2>
+        </div>
+    </section>
 
-  <!-- قسم التواصل -->
-  <section id="contact">
-    <h2>تواصل معنا</h2>
-    <form>
-      <input type="text" placeholder="اسمك" required>
-      <input type="email" placeholder="بريدك الإلكتروني" required>
-      <textarea placeholder="رسالتك" required></textarea>
-      <button type="submit">إرسال</button>
-    </form>
-  </section>
+    <section class="py-32 px-10 text-center bg-white reveal">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-[12px] tracking-[8px] uppercase text-gold mb-12 font-bold">The Leading Brokerage</h3>
+            <h4 class="serif text-4xl md:text-6xl italic mb-12 leading-tight">The Finest Name in Superyachts</h4>
+            <p class="text-lg md:text-xl text-gray-500 font-light leading-relaxed italic">
+                Barbour is the world's leading yacht brokerage company. 
+                Yacht owners, charterers and family offices rely on our expert advice and support to buy, sell, build, charter and manage the most spectacular superyachts. Our team of professionals, spread across global locations, is entrusted with selling hundreds of yachts each year and arranging thousands of incredible charters in the world's most stunning destinations.
+            </p>
+            <div class="mt-16 w-16 h-[1px] bg-red-600 mx-auto"></div>
+        </div>
+    </section>
 
-  <!-- تذييل -->
-  <footer>
-    <p>© 2026 Barbour Yachting - جميع الحقوق محفوظة</p>
-  </footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>Barbour Yachting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {font-family: Tahoma, sans-serif; margin:0; padding:0; direction:rtl;}
-    header {background:#003366; color:#fff; padding:20px;}
-    nav ul {list-style:none; display:flex; justify-content:center; gap:20px;}
-    nav a {color:#fff; text-decoration:none;}
-    section {padding:40px;}
-    .hero {background:#eee; text-align:center; padding:100px 20px;}
-    .service, .team-member, .testimonial, .faq {border:1px solid #ccc; padding:20px; margin-bottom:20px;}
-    footer {background:#003366; color:#fff; text-align:center; padding:20px;}
-    img {max-width:100%; height:auto;}
-  </style>
-</head>
-<body>
-  <!-- رأس الصفحة -->
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#services">الخدمات</a></li>
-        <li><a href="#gallery">المعرض</a></li>
-        <li><a href="#team">فريق العمل</a></li>
-        <li><a href="#testimonials">آراء العملاء</a></li>
-        <li><a href="#faq">الأسئلة الشائعة</a></li>
-        <li><a href="#contact">تواصل معنا</a></li>
-      </ul>
-    </nav>
-  </header>
+    <section id="sales" class="flex flex-wrap">
+        <div class="yacht-card w-full lg:w-1/2 reveal">
+            <img src="https://images.unsplash.com/photo-1540946484628-424c8030be1f?w=1200" alt="Sales">
+            <div class="card-caption">
+                <span class="text-gold text-[10px] tracking-widest uppercase mb-4 block">Sales</span>
+                <h5 class="serif text-5xl italic mb-8">Purchase Your Dream</h5>
+                <button class="border border-white/50 px-10 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">View Yachts</button>
+            </div>
+        </div>
+        <div class="yacht-card w-full lg:w-1/2 border-l border-white/10 reveal">
+            <img src="https://images.unsplash.com/photo-1567899378494-47b22a2896ad?w=1200" alt="Charter">
+            <div class="card-caption">
+                <span class="text-gold text-[10px] tracking-widest uppercase mb-4 block">Charter</span>
+                <h5 class="serif text-5xl italic mb-8">Explore The Horizon</h5>
+                <button class="border border-white/50 px-10 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">Start Journey</button>
+            </div>
+        </div>
+    </section>
 
-  <!-- بانر رئيسي -->
-  <section id="home" class="hero">
-    <h1>مرحباً بكم في Barbour Yachting</h1>
-    <p>رحلات بحرية وتجارب لا تُنسى</p>
-    <button>اكتشف المزيد</button>
-  </section>
+    <section class="py-32 bg-[#0a1121] text-white overflow-hidden">
+        <div class="container mx-auto px-10 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <h4 class="serif text-5xl italic mb-8">Global Presence</h4>
+                <p class="text-gray-400 text-lg leading-loose mb-12">From Monaco to Dubai, Fort Lauderdale to London, our reach is truly global. We are where your yacht is.</p>
+                <div class="grid grid-cols-2 gap-8 text-[10px] tracking-widest uppercase font-bold text-gold">
+                    <p>• 21 Locations</p>
+                    <p>• 230 Professionals</p>
+                    <p>• 75 Years Heritage</p>
+                    <p>• $5B+ in Transactions</p>
+                </div>
+            </div>
+            <div class="relative reveal">
+                <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=1000" class="opacity-40 grayscale hover:grayscale-0 transition-all duration-1000">
+            </div>
+        </div>
+    </section>
 
-  <!-- قسم الخدمات -->
-  <section id="services">
-    <h2>خدماتنا</h2>
-    <!-- كرر عناصر الخدمة -->
-    <div class="service"><h3>تأجير يخوت</h3><p>نوفر لك أفضل اليخوت الفاخرة.</p></div>
-    <div class="service"><h3>رحلات بحرية</h3><p>استمتع بجولات بحرية مميزة.</p></div>
-    <div class="service"><h3>فعاليات خاصة</h3><p>نساعدك بتنظيم حفلات ومناسبات.</p></div>
-    <div class="service"><h3>رحلات غروب الشمس</h3><p>مشاهد ساحرة عند الغروب.</p></div>
-    <div class="service"><h3>رحلات صيد</h3><p>تجربة صيد ممتعة.</p></div>
-    <!-- أضف عشرات الخدمات لتكبير الكود -->
-  </section>
+    <footer id="contact" class="bg-white pt-24 pb-12 px-10 border-t border-gray-100">
+        <div class="flex flex-col md:flex-row justify-between items-start mb-20 gap-16">
+            <div class="logo serif italic text-3xl font-bold text-navy-900">BARBOUR</div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+                <div>
+                    <h6 class="text-[10px] uppercase tracking-widest font-bold mb-8">Service</h6>
+                    <ul class="text-[11px] space-y-4 text-gray-400 uppercase tracking-widest">
+                        <li>Buy</li><li>Charter</li><li>Sell</li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="text-[10px] uppercase tracking-widest font-bold mb-8">Company</h6>
+                    <ul class="text-[11px] space-y-4 text-gray-400 uppercase tracking-widest">
+                        <li>Our Story</li><li>Contact</li><li>Journal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between items-center pt-10 border-t border-gray-50 text-[9px] tracking-[4px] text-gray-300 uppercase">
+            <span>© 2026 BARBOUR YACHTING</span>
+            <div class="space-x-8 hidden md:block">
+                <a href="#">Privacy</a><a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
 
-  <!-- قسم المعرض -->
-  <section id="gallery">
-    <h2>المعرض</h2>
-    <div class="gallery">
-      <img src="images/yacht1.jpg" alt="يخت فاخر">
-      <img src="images/yacht2.jpg" alt="رحلة بحرية">
-      <img src="images/yacht3.jpg" alt="منظر البحر">
-      <img src="images/yacht4.jpg" alt="غروب الشمس">
-      <img src="images/yacht5.jpg" alt="حفلة على اليخت">
-      <!-- كرر عشرات الصور -->
-    </div>
-  </section>
+    <script>
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 800); }, 1500);
+        });
 
-  <!-- قسم الفريق -->
-  <section id="team">
-    <h2>فريق العمل</h2>
-    <div class="team-member"><h3>محمد</h3><p>قائد الفريق</p></div>
-    <div class="team-member"><h3>سارة</h3><p>منسقة الرحلات</p></div>
-    <div class="team-member"><h3>أحمد</h3><p>خبير صيد</p></div>
-    <div class="team-member"><h3>ليلى</h3><p>خدمة العملاء</p></div>
-    <!-- كرر أعضاء الفريق -->
-  </section>
+        // Sidebar Toggle
+        function toggleMenu() {
+            document.getElementById('side-menu').classList.toggle('open');
+        }
 
-  <!-- قسم آراء العملاء -->
-  <section id="testimonials">
-    <h2>آراء العملاء</h2>
-    <div class="testimonial"><p>"تجربة رائعة جداً!"</p><p>- أحمد</p></div>
-    <div class="testimonial"><p>"أفضل رحلة بحرية في حياتي."</p><p>- ليلى</p></div>
-    <div class="testimonial"><p>"خدمة ممتازة."</p><p>- خالد</p></div>
-    <!-- كرر عشرات الآراء -->
-  </section>
-
-  <!-- قسم الأسئلة الشائعة -->
-  <section id="faq">
-    <h2>الأسئلة الشائعة</h2>
-    <div class="faq"><h3>كيف أحجز رحلة؟</h3><p>يمكنك التواصل معنا عبر النموذج أدناه.</p></div>
-    <div class="faq"><h3>هل يوجد طاقم متخصص؟</h3><p>نعم، جميع الرحلات مع طاقم محترف.</p></div>
-    <div class="faq"><h3>هل يمكن تنظيم حفلات؟</h3><p>نعم، نوفر خدمات تنظيم كاملة.</p></div>
-    <!-- كرر عشرات الأسئلة -->
-  </section>
-
-  <!-- قسم التواصل -->
-  <section id="contact">
-    <h2>تواصل معنا</h2>
-    <form>
-      <input type="text" placeholder="اسمك" required>
-      <input type="email" placeholder="بريدك الإلكتروني" required>
-      <textarea placeholder="رسالتك" required></textarea>
-      <button type="submit">إرسال</button>
-    </form>
-  </section>
-
-  <!-- تذييل -->
-  <footer>
-    <p>© 2026 Barbour Yachting - جميع الحقوق محفوظة</p>
-  </footer>
+        // Reveal on Scroll Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        
+        // Initial call
+        reveal();
+    </script>
 </body>
 </html>

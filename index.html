@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbour Yachting | The Finest Name in Superyachts</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -24,7 +25,7 @@
         #loader { position: fixed; inset: 0; background: var(--fraser-navy); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: 0.8s ease-in-out; }
         .loader-content { color: white; letter-spacing: 10px; font-weight: 200; animation: pulse 2s infinite; }
 
-        /* --- NAV BAR & RED LINE --- */
+        /* --- NAV BAR --- */
         header.top-bar {
             background-color: var(--fraser-navy);
             height: 90px;
@@ -35,246 +36,200 @@
             position: fixed;
             top: 0; width: 100%;
             z-index: 2000;
-            transition: 0.5s;
         }
-        .red-line {
-            height: 4px; background-color: var(--fraser-red);
-            width: 100%; position: absolute; bottom: -4px; left: 0; z-index: 2001;
-        }
+        .red-line { height: 4px; background-color: var(--fraser-red); width: 100%; position: absolute; bottom: -4px; left: 0; z-index: 2001; }
 
-        /* --- HERO SECTION (YOUTUBE FIX) --- */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background: #000;
-        }
-        .video-background {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 100vw; height: 56.25vw;
-            min-height: 100vh; min-width: 177.77vh;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
+        /* --- HERO --- */
+        .hero-section { position: relative; width: 100%; height: 100vh; overflow: hidden; background: #000; }
+        .video-background { position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%); pointer-events: none; }
         #player { width: 100%; height: 100%; }
-
-        .hero-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 100%);
-            z-index: 5;
-        }
-        .video-text {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10; color: white; text-align: center; width: 100%;
-        }
-        .video-text h2 {
-            font-size: clamp(2rem, 6vw, 4.5rem);
-            letter-spacing: 0.5em; text-transform: uppercase;
-            font-weight: 300; animation: fadeInUp 1.5s ease;
-        }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 100%); z-index: 5; }
+        .video-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; color: white; text-align: center; width: 100%; }
+        .video-text h2 { font-size: clamp(2rem, 6vw, 4.5rem); letter-spacing: 0.5em; text-transform: uppercase; font-weight: 300; }
 
         /* --- SIDE MENU --- */
-        #side-menu {
-            position: fixed; top: 0; left: -100%; width: 400px; height: 100vh;
-            background: var(--fraser-navy); z-index: 3000; transition: 0.7s cubic-bezier(0.7, 0, 0.3, 1);
-            padding: 80px 50px; color: white;
-        }
+        #side-menu { position: fixed; top: 0; left: -100%; width: 400px; height: 100vh; background: var(--fraser-navy); z-index: 3000; transition: 0.7s cubic-bezier(0.7, 0, 0.3, 1); padding: 80px 50px; color: white; }
         #side-menu.open { left: 0; }
-        .menu-link { 
-            display: block; font-size: 2rem; margin-bottom: 30px; 
-            transition: 0.3s; opacity: 0.7; 
-        }
+        .menu-link { display: block; font-size: 2rem; margin-bottom: 30px; transition: 0.3s; opacity: 0.7; }
         .menu-link:hover { opacity: 1; padding-left: 15px; color: var(--fraser-gold); }
 
-        /* --- CARDS & GRIDS --- */
-        .yacht-card {
-            position: relative; height: 700px; overflow: hidden; background: #000;
-        }
-        .yacht-card img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: 1.5s ease; opacity: 0.85;
-        }
-        .yacht-card:hover img { transform: scale(1.1); opacity: 1; }
-        .card-caption {
-            position: absolute; bottom: 50px; left: 50px; color: white; z-index: 20;
-        }
+        /* --- FRASER STYLE DECORATION --- */
+        .line-decorator { width: 80px; height: 3px; margin: 20px auto; display: flex; }
+        .line-black { width: 50%; height: 100%; background: #000b1e; }
+        .line-red { width: 50%; height: 100%; background: var(--fraser-red); }
 
-        /* --- SCROLL REVEAL --- */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1.2s ease; }
+        /* --- YACHT SLIDER CARD --- */
+        .yacht-slider-card { background: #fff; text-align: center; }
+        .yacht-img-box { width: 100%; height: 280px; overflow: hidden; }
+        .yacht-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .specs-grid { display: grid; grid-template-cols: repeat(4, 1fr); border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin: 15px 0; padding: 12px 0; }
+        .spec-val { font-size: 13px; font-weight: 700; display: block; }
+        .spec-label { font-size: 9px; text-transform: uppercase; color: #999; letter-spacing: 1px; }
+        .price-strip { background: #f8f8f8; padding: 12px; font-size: 11px; letter-spacing: 1px; color: #333; }
+
+        /* --- WIDE SECTION CARD --- */
+        .wide-card { position: relative; width: 100%; height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .wide-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
+        .btn-glass { border: 1px solid white; padding: 15px 40px; text-transform: uppercase; letter-spacing: 2px; font-size: 10px; color: white; margin-top: 25px; transition: 0.3s; }
+        .btn-glass:hover { background: white; color: black; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
-            header.top-bar { padding: 0 30px; height: 70px; }
-            #side-menu { width: 100%; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translate(-50%, -40%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
     </style>
 </head>
-<body>
+<body class="pt-[90px]">
 
-    <div id="loader">
-        <div class="loader-content serif italic">BARBOUR</div>
-    </div>
+    <div id="loader"><div class="loader-content serif italic">BARBOUR</div></div>
 
     <div id="side-menu">
         <button onclick="toggleMenu()" class="text-gold uppercase tracking-widest text-xs mb-20">Close [X]</button>
         <nav class="serif italic">
             <a href="#sales" class="menu-link" onclick="toggleMenu()">Yachts for Sale</a>
             <a href="#charter" class="menu-link" onclick="toggleMenu()">Yacht Charter</a>
-            <a href="#new" class="menu-link" onclick="toggleMenu()">New Build</a>
-            <a href="#management" class="menu-link" onclick="toggleMenu()">Management</a>
             <a href="#contact" class="menu-link" onclick="toggleMenu()">Contact</a>
         </nav>
     </div>
 
     <header class="top-bar">
-        <div class="nav-icons flex items-center space-x-8">
+        <div class="flex items-center space-x-8">
             <div onclick="toggleMenu()" class="cursor-pointer group">
-                <div class="w-8 h-[1px] bg-white mb-2 transition group-hover:bg-gold"></div>
-                <div class="w-5 h-[1px] bg-white transition group-hover:bg-gold"></div>
+                <div class="w-8 h-[1px] bg-white mb-2"></div>
+                <div class="w-5 h-[1px] bg-white"></div>
             </div>
-            <svg class="w-5 h-5 fill-white cursor-pointer hover:fill-gold transition" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         </div>
-
-        <div class="logo text-white text-xl md:text-3xl tracking-[0.4em] flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-             <span class="serif italic font-bold">BARBOUR</span>
-        </div>
-
-        <div class="nav-icons hidden md:flex items-center space-x-8">
-            <svg class="w-5 h-5 fill-white cursor-pointer hover:fill-gold" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            <svg class="w-5 h-5 fill-white cursor-pointer hover:fill-gold" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            <span class="text-white text-[10px] tracking-widest border-b border-gold font-bold cursor-pointer">EN</span>
+        <div class="logo text-white text-xl md:text-3xl tracking-[0.4em] serif italic font-bold">BARBOUR</div>
+        <div class="hidden md:flex items-center space-x-8">
+            <span class="text-white text-[10px] tracking-widest border-b border-gold font-bold">EN</span>
         </div>
         <div class="red-line"></div>
     </header>
 
     <section class="hero-section">
-        <div class="video-background">
-            <div id="player"></div>
-        </div>
+        <div class="video-background"><div id="player"></div></div>
         <div class="hero-overlay"></div>
-        <div class="video-text">
-            <h2 class="serif italic">First & Foremost</h2>
-        </div>
+        <div class="video-text"><h2 class="serif italic">First & Foremost</h2></div>
     </section>
 
-    <section class="py-32 px-10 text-center bg-white reveal">
-        <div class="max-w-4xl mx-auto">
-            <h3 class="text-[12px] tracking-[8px] uppercase text-gold mb-12 font-bold">The Leading Brokerage</h3>
-            <h4 class="serif text-4xl md:text-6xl italic mb-12 leading-tight">The Finest Name in Superyachts</h4>
-            <p class="text-lg md:text-xl text-gray-500 font-light leading-relaxed italic">
-                Barbour is the world's leading yacht brokerage company. 
-                Yacht owners, charterers and family offices rely on our expert advice and support to buy, sell, build, charter and manage the most spectacular superyachts. Our team of professionals, spread across global locations, is entrusted with selling hundreds of yachts each year and arranging thousands of incredible charters in the world's most stunning destinations.
-            </p>
-            <div class="mt-16 w-16 h-[1px] bg-red-600 mx-auto"></div>
-        </div>
-    </section>
-
-    <section id="sales" class="flex flex-wrap">
-        <div class="yacht-card w-full lg:w-1/2 reveal">
-            <img src="sunseker.png" alt="Purchase Your Dream">
-            <div class="card-caption">
-                <span class="text-gold text-[10px] tracking-widest uppercase mb-4 block">Sales</span>
-                <h5 class="serif text-5xl italic mb-8">Purchase Your Dream</h5>
-                <button class="border border-white/50 px-10 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">View Yachts</button>
+    <section class="py-24 bg-white reveal">
+        <div class="text-center mb-10">
+            <span class="text-[11px] tracking-[5px] uppercase text-gray-400">First Choice</span>
+            <div class="line-decorator"><div class="line-black"></div><div class="line-red"></div></div>
+            <div class="flex justify-center space-x-4 mt-8 mb-16">
+                <button class="bg-[#000b1e] text-white px-8 py-3 text-[10px] tracking-widest uppercase">Yachts for Charter</button>
+                <button class="border border-black px-8 py-3 text-[10px] tracking-widest uppercase">Yachts for Sale</button>
             </div>
         </div>
-        <div class="yacht-card w-full lg:w-1/2 border-l border-white/10 reveal">
-            <img src="https://images.unsplash.com/photo-1567899378494-47b22a2896ad?w=1200" alt="Charter">
-            <div class="card-caption">
-                <span class="text-gold text-[10px] tracking-widest uppercase mb-4 block">Charter</span>
-                <h5 class="serif text-5xl italic mb-8">Explore The Horizon</h5>
-                <button class="border border-white/50 px-10 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">Start Journey</button>
-            </div>
-        </div>
-    </section>
 
-    <section class="py-32 bg-[#0a1121] text-white overflow-hidden">
-        <div class="container mx-auto px-10 grid lg:grid-cols-2 gap-20 items-center">
-            <div class="reveal">
-                <h4 class="serif text-5xl italic mb-8">Global Presence</h4>
-                <p class="text-gray-400 text-lg leading-loose mb-12">From Monaco to Dubai, Fort Lauderdale to London, our reach is truly global. We are where your yacht is.</p>
-                <div class="grid grid-cols-2 gap-8 text-[10px] tracking-widest uppercase font-bold text-gold">
-                    <p>• 21 Locations</p>
-                    <p>• 230 Professionals</p>
-                    <p>• 75 Years Heritage</p>
-                    <p>• $5B+ in Transactions</p>
+        <div class="swiper yachtSwiper px-10">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="yacht-slider-card">
+                        <div class="yacht-img-box"><img src="sunseker.png"></div>
+                        <h3 class="serif text-2xl uppercase mt-6 tracking-widest">Carinthia VII</h3>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Lürssen - 2002 (2023)</p>
+                        <div class="specs-grid mx-4">
+                            <div class="spec-item"><span class="spec-val">97m</span><span class="spec-label">Length</span></div>
+                            <div class="spec-item"><span class="spec-val">12</span><span class="spec-label">Guests</span></div>
+                            <div class="spec-item"><span class="spec-val">8</span><span class="spec-label">Cabins</span></div>
+                            <div class="spec-item"><span class="spec-val">33</span><span class="spec-label">Crew</span></div>
+                        </div>
+                        <div class="price-strip uppercase mx-4">From <strong>€1,500,000</strong> P/Week</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="yacht-slider-card">
+                        <div class="yacht-img-box"><img src="azimut.png"></div>
+                        <h3 class="serif text-2xl uppercase mt-6 tracking-widest">Cloud 9</h3>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Sanlorenzo - 2021</p>
+                        <div class="specs-grid mx-4">
+                            <div class="spec-item"><span class="spec-val">62m</span><span class="spec-label">Length</span></div>
+                            <div class="spec-item"><span class="spec-val">12</span><span class="spec-label">Guests</span></div>
+                            <div class="spec-item"><span class="spec-val">6</span><span class="spec-label">Cabins</span></div>
+                            <div class="spec-item"><span class="spec-val">15</span><span class="spec-label">Crew</span></div>
+                        </div>
+                        <div class="price-strip uppercase mx-4">From <strong>€500,000</strong> P/Week</div>
+                    </div>
                 </div>
             </div>
-            <div class="relative reveal">
-                <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=1000" class="opacity-40 grayscale hover:grayscale-0 transition-all duration-1000">
+            <div class="swiper-pagination mt-10"></div>
+        </div>
+        <div class="text-center mt-12">
+            <button class="border border-black px-10 py-3 text-[10px] uppercase tracking-widest">More Yachts for Charter</button>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white text-center reveal">
+        <span class="text-[11px] tracking-[4px] text-gray-400 uppercase">First Class Yachts in the Finest Destinations</span>
+        <div class="line-decorator"><div class="line-black"></div><div class="line-red"></div></div>
+        <h2 class="serif text-4xl md:text-5xl uppercase mb-16">Experience The Ultimate Vacation</h2>
+        <div class="wide-card">
+            <img src="https://images.unsplash.com/photo-1567899378494-47b22a2896ad?w=1600">
+            <div class="relative z-10 text-white">
+                <h4 class="serif text-4xl italic uppercase tracking-widest">What To Do</h4>
+                <button class="btn-glass">Charter with Barbour</button>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-white pt-24 pb-12 px-10 border-t border-gray-100">
+    <section class="py-20 bg-white text-center reveal">
+        <span class="text-[11px] tracking-[4px] text-gray-400 uppercase">The World's Leading Yacht Brokerage Company</span>
+        <div class="line-decorator"><div class="line-black"></div><div class="line-red"></div></div>
+        <h2 class="serif text-4xl md:text-5xl uppercase mb-16">The Best Investment You'll Ever Make</h2>
+        <div class="wide-card">
+            <img src="https://images.unsplash.com/photo-1544473244-f6895a69ad41?w=1600">
+            <div class="relative z-10 text-white">
+                <h4 class="serif text-4xl italic uppercase tracking-widest">Trusted Advisors</h4>
+                <button class="btn-glass">Buy with Barbour</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-24 pb-12 px-10 border-t border-gray-100">
         <div class="flex flex-col md:flex-row justify-between items-start mb-20 gap-16">
             <div class="logo serif italic text-3xl font-bold text-navy-900">BARBOUR</div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
-                <div>
-                    <h6 class="text-[10px] uppercase tracking-widest font-bold mb-8">Service</h6>
-                    <ul class="text-[11px] space-y-4 text-gray-400 uppercase tracking-widest">
-                        <li>Buy</li><li>Charter</li><li>Sell</li>
-                    </ul>
-                </div>
-                <div>
-                    <h6 class="text-[10px] uppercase tracking-widest font-bold mb-8">Company</h6>
-                    <ul class="text-[11px] space-y-4 text-gray-400 uppercase tracking-widest">
-                        <li>Our Story</li><li>Contact</li><li>Journal</li>
-                    </ul>
-                </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-16 uppercase text-[10px] tracking-widest">
+                <div><h6 class="font-bold mb-8">Service</h6><ul class="space-y-4 text-gray-400"><li>Buy</li><li>Charter</li><li>Sell</li></ul></div>
+                <div><h6 class="font-bold mb-8">Company</h6><ul class="space-y-4 text-gray-400"><li>Our Story</li><li>Contact</li></ul></div>
             </div>
         </div>
-        <div class="flex justify-between items-center pt-10 border-t border-gray-50 text-[9px] tracking-[4px] text-gray-300 uppercase">
-            <span>© 2026 BARBOUR YACHTING</span>
-        </div>
+        <div class="pt-10 border-t border-gray-50 text-[9px] tracking-[4px] text-gray-300 uppercase">© 2026 BARBOUR YACHTING</div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // YouTube API Logic
+        // Swiper Init
+        var swiper = new Swiper(".yachtSwiper", {
+            slidesPerView: 1, spaceBetween: 20, grabCursor: true,
+            pagination: { el: ".swiper-pagination", type: "progressbar" },
+            breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+        });
+
+        // YouTube
         var player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 videoId: 'ok-M1yyss2U',
-                playerVars: {
-                    'autoplay': 1, 'controls': 0, 'showinfo': 0, 'rel': 0, 'loop': 1, 'mute': 1, 'start': 42, 'end': 80, 'playlist': 'ok-M1yyss2U'
-                },
-                events: {
-                    'onReady': function(e) { e.target.playVideo(); },
-                    'onStateChange': function(e) { if (e.data === YT.PlayerState.ENDED) { player.seekTo(42); } }
-                }
+                playerVars: { 'autoplay': 1, 'controls': 0, 'showinfo': 0, 'rel': 0, 'loop': 1, 'mute': 1, 'start': 42, 'playlist': 'ok-M1yyss2U' },
+                events: { 'onReady': (e) => e.target.playVideo() }
             });
         }
 
-        // Preloader Logic
+        // UI Logic
         window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 800); }, 1500);
+            setTimeout(() => { document.getElementById('loader').style.opacity = '0'; setTimeout(() => document.getElementById('loader').style.display = 'none', 800); }, 1000);
         });
 
-        // Sidebar Toggle
-        function toggleMenu() {
-            document.getElementById('side-menu').classList.toggle('open');
-        }
+        function toggleMenu() { document.getElementById('side-menu').classList.toggle('open'); }
 
-        // Reveal on Scroll Logic
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) { reveals[i].classList.add("active"); }
-            }
+            reveals.forEach(r => {
+                if (r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add("active");
+            });
         }
         window.addEventListener("scroll", reveal);
         reveal();

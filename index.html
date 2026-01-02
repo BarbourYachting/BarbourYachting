@@ -335,3 +335,120 @@
     </script>
 </body>
 </html>
+<div style="background-color: #ffffff; color: #000c26; font-family: 'Times New Roman', serif; direction: ltr; margin: 0; padding: 0; width: 100%; overflow-x: hidden;">
+
+    <section style="padding: 100px 2%; background-color: #fcfcfc; text-align: center;">
+        <p style="text-transform: uppercase; font-size: 12px; letter-spacing: 4px; color: #888; font-weight: bold; margin-bottom: 10px;">AN UNPARALLELED TRACK RECORD</p>
+        <div style="display: flex; width: 150px; height: 4px; margin: 0 auto 30px;">
+            <div style="flex: 1; background-color: #000c26;"></div>
+            <div style="flex: 1; background-color: #ff3b3b;"></div>
+        </div>
+        <h2 style="font-size: 40px; font-weight: bold; margin-bottom: 60px; letter-spacing: 1px;">A FEW OF OUR RECENT SALES</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; padding: 0 2%;">
+            <script>
+                const yachts = [
+                    {n: "HARMONY III", b: "BENETTI - 2009", s: ["44m","10","5","9"]},
+                    {n: "OLMIDA", b: "ROYAL HAKVOORT - 2010", s: ["49m","14","7","12"]},
+                    {n: "GIN TONIC", b: "FEADSHIP - 1981", s: ["42m","12","6","9"]},
+                    {n: "CRYSTAL LADY", b: "WARREN YACHTS - 2002", s: ["35m","8","4","4"]},
+                    {n: "TROUBADOUR 1", b: "SEA RAY - 2015", s: ["20m","8","4","-"]},
+                    {n: "EZGY", b: "BLAUNDUS YACHTS - 2021", s: ["30m","10","5","5"]},
+                    {n: "STATE OF GRACE", b: "PERINI NAVI - 2013", s: ["39m","9","4","6"]},
+                    {n: "VALERIA", b: "SUNSEEKER - 2019", s: ["23m","8","4","-"]}
+                ];
+                yachts.forEach(y => {
+                    document.write(`
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <img src="${y.n}.jpg" style="width: 100%; height: 260px; object-fit: cover; background:#eee;">
+                        <h3 style="font-size: 22px; font-weight: bold; margin: 20px 0 5px; text-transform: uppercase;">${y.n}</h3>
+                        <p style="font-size: 12px; color: #999; font-weight: bold; margin-bottom: 20px;">${y.b}</p>
+                        <div style="display: flex; justify-content: space-around; border-top: 1px solid #eee; padding-top: 15px;">
+                            <div><strong style="display:block; font-size:14px;">${y.s[0]}</strong><small style="font-size:10px; color:#888; font-weight:bold;">LENGTH</small></div>
+                            <div style="border-left:1px solid #eee; border-right:1px solid #eee; padding: 0 15px;">
+                                <strong style="display:block; font-size:14px;">${y.s[1]}</strong><small style="font-size:10px; color:#888; font-weight:bold;">GUESTS</small>
+                            </div>
+                            <div style="border-right:1px solid #eee; padding-right: 15px;">
+                                <strong style="display:block; font-size:14px;">${y.s[2]}</strong><small style="font-size:10px; color:#888; font-weight:bold;">CABINS</small>
+                            </div>
+                            <div><strong style="display:block; font-size:14px;">${y.s[3]}</strong><small style="font-size:10px; color:#888; font-weight:bold;">CREW</small></div>
+                        </div>
+                    </div>
+                    `);
+                });
+            </script>
+        </div>
+        <button style="margin-top: 40px; background: #000c26; color: white; padding: 18px 60px; border: none; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; cursor: pointer;">MORE RECENT SALES</button>
+    </section>
+
+    <section style="padding: 120px 10%; text-align: center; background: #fff;">
+        <h2 style="font-size: 36px; font-weight: bold; letter-spacing: 4px; margin-bottom: 40px;">THE WORLD'S LEADING FULL-SERVICE YACHTING COMPANY</h2>
+        <p style="font-size: 20px; line-height: 2.2; font-weight: bold; color: #333; max-width: 1200px; margin: 0 auto; font-family: sans-serif;">
+            Handling a portfolio of yachts worth over $7.4bn/€7bn and working with over 13,000 highly active and qualified clients, Fraser offers experienced client support and guidance in all key sectors including Sales & Purchase, New Build Management, Yacht Management, Charter Management, Luxury Yacht Charter and quality Crew Placement.
+        </p>
+    </section>
+
+    <section style="background: #000c26; color: white; padding: 100px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; text-align: center;">
+        <div><h3 style="font-size: 60px; font-weight: bold; margin:0;">75+</h3><p style="font-weight: bold; letter-spacing: 2px; font-size: 12px; margin-top: 15px;">YEARS YACHT BROKERAGE</p></div>
+        <div><h3 style="font-size: 60px; font-weight: bold; margin:0;">230+</h3><p style="font-weight: bold; letter-spacing: 2px; font-size: 12px; margin-top: 15px;">BROKERAGE SPECIALISTS</p></div>
+        <div><h3 style="font-size: 60px; font-weight: bold; margin:0;">21</h3><p style="font-weight: bold; letter-spacing: 2px; font-size: 12px; margin-top: 15px;">OFFICES WORLDWIDE</p></div>
+        <div><h3 style="font-size: 60px; font-weight: bold; margin:0;">50+</h3><p style="font-weight: bold; letter-spacing: 2px; font-size: 12px; margin-top: 15px;">SPECIALIST YACHT MANAGEMENT SERVICES</p></div>
+        <div><h3 style="font-size: 60px; font-weight: bold; margin:0;">$7.4B+</h3><p style="font-weight: bold; letter-spacing: 2px; font-size: 12px; margin-top: 15px;">PORTFOLIO OF YACHTS MANAGED</p></div>
+    </section>
+
+    <section style="padding: 100px 0; background: #fff; position: relative; overflow: hidden;">
+        <div style="padding-left: 5%;">
+            <p style="text-transform: uppercase; font-size: 12px; letter-spacing: 4px; color: #888; font-weight: bold;">MAKING OWNERSHIP EASY</p>
+            <div style="display: flex; width: 140px; height: 4px; margin: 15px 0 25px;">
+                <div style="flex: 1; background-color: #000c26;"></div>
+                <div style="flex: 1; background-color: #ff3b3b;"></div>
+            </div>
+            <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 50px;">THE FIRST CHOICE FOR YACHT OWNERS</h2>
+        </div>
+
+        <div style="position: relative; width: 100%;">
+            <button onclick="document.getElementById('fraserSlider').scrollBy({left: -400, behavior: 'smooth'})" style="position: absolute; left: 30px; top: 50%; transform: translateY(-50%); z-index: 100; width: 70px; height: 70px; border-radius: 50%; border: 2px solid white; background: rgba(255,255,255,0.2); color: white; font-size: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10094;</button>
+
+            <div id="fraserSlider" style="display: flex; overflow-x: auto; gap: 10px; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 5%;">
+                <div style="min-width: 450px; position: relative; scroll-snap-align: start;">
+                    <img src="m1.jpg" style="width:100%; height:550px; object-fit:cover;">
+                    <div style="position:absolute; bottom:0; width:100%; background:rgba(0,12,38,0.9); padding: 30px; box-sizing: border-box;">
+                        <h4 style="color:white; margin:0; text-transform:uppercase; font-size:20px; font-weight:bold;">YACHT MANAGEMENT</h4>
+                        <p style="color:#ff3b3b; margin:10px 0 0; font-weight:bold; font-size:12px;">LEARN MORE ></p>
+                    </div>
+                </div>
+                <div style="min-width: 450px; position: relative; scroll-snap-align: start;">
+                    <img src="m2.jpg" style="width:100%; height:550px; object-fit:cover;">
+                    <div style="position:absolute; bottom:0; width:100%; background:rgba(0,12,38,0.9); padding: 30px; box-sizing: border-box;">
+                        <h4 style="color:white; margin:0; text-transform:uppercase; font-size:20px; font-weight:bold;">CHARTER MANAGEMENT</h4>
+                        <p style="color:#ff3b3b; margin:10px 0 0; font-weight:bold; font-size:12px;">LEARN MORE ></p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="document.getElementById('fraserSlider').scrollBy({left: 400, behavior: 'smooth'})" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); z-index: 100; width: 70px; height: 70px; border-radius: 50%; border: 2px solid white; background: rgba(255,255,255,0.2); color: white; font-size: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#10095;</button>
+        </div>
+    </section>
+
+    <footer style="background: #000c26; color: white; padding: 80px 5% 40px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; border-bottom: 1px solid #1a253d; padding-bottom: 50px;">
+            <div style="flex: 1; min-width: 300px;">
+                <h4 style="border-bottom: 1px solid #ff3b3b; display: inline-block; padding-bottom: 5px; text-transform: uppercase;">Charter & Sales</h4>
+                <ul style="list-style: none; padding: 0; line-height: 2.5; font-weight: bold; font-size: 14px; color: #ccc;">
+                    <li>Yachts for Charter</li><li>Yachts for Sale</li><li>Recent Sales</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h4 style="border-bottom: 1px solid #ff3b3b; display: inline-block; padding-bottom: 5px; text-transform: uppercase;">Owner Services</h4>
+                <ul style="list-style: none; padding: 0; line-height: 2.5; font-weight: bold; font-size: 14px; color: #ccc;">
+                    <li>Yacht Management</li><li>Crew Services</li><li>Build & Refit</li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 50px;">
+            <h1 style="letter-spacing: 20px; font-size: 60px; margin: 0;">BARBOUR</h1>
+            <p style="font-size: 12px; color: #666; letter-spacing: 5px; margin-top: 20px; font-weight: bold;">© 2026 BARBOUR ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
+
+</div>
